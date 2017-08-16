@@ -4,13 +4,13 @@ class fDigitsSegtPin {
         fDigitsSegtPin(u8 vPf1, u8 vPf2, u8 vPf3, u8 vPf4, u8 vPf5, u8 vPf6, u8 vPf7, u8 vPf8, u8 vPf9, u8 vPf10, u8 vPf11, u8 vPf12);
 
         //Print digit
-        void print(float vffInput);
+        void print(float vff);
 
         //Settings
         u8 doPrint_lastDot = 0;
     private:
         //Pins
-        u8 vPcD1; u8 vPcD2; u8 vPcD3; vPcD4;
+        u8 vPcD1; u8 vPcD2; u8 vPcD3; u8 vPcD4;
         u8 vPcA; u8 vPcB; u8 vPcC; u8 vPcD; u8 vPcE; u8 vPcF; u8 vPcG; u8 vPcH;
 
         //Display table
@@ -37,12 +37,14 @@ class fDigitsSegtPin {
 
         //Clear the digit
         void fvClear(u8 vifDigit);
+        //Print the dot
+        void fvDot(u8 vifDigit);
         //Print the digit with the number
         void fvPrint(u8 vifDigit, u8 vifNumber);
 
         //Rounding function used in printing
         u8 fiRound(float vff);
-}
+};
 
 //Storage and init the pins
 fDigitsSegtPin::fDigitsSegtPin(u8 vPf1, u8 vPf2, u8 vPf3, u8 vPf4, u8 vPf5, u8 vPf6, u8 vPf7, u8 vPf8, u8 vPf9, u8 vPf10, u8 vPf11, u8 vPf12) {
@@ -95,35 +97,33 @@ void fDigitsSegtPin::fvPrint(u8 vifDigit, u8 vifNumber) {
 }
 
 u8 fiRound(float vff) { return((vff - (int)(vff) >= 0.5) ? ((int)(vff) + 1) : ((int)(vff))); }
-void fDigitsSegtPin::print(float vffInput) {
-}
 
 //Print user's input
-void fDigitsSegtPin::print(float vffInput) {
+void fDigitsSegtPin::print(float vff) {
     //Make sure these value can be printed
-    if(vffInput >= 10000) {
+    if(vff >= 10000) {
         if(Serial) Serial.println("Error(4Digit7Seg12Pin): Input value larger than 10000.");
-        break;
+        return;
     }
-    if(vffInput < 0) {
+    if(vff < 0) {
         if(Serial) Serial.println("Error(4Digit7Seg12Pin): Input value smaller than 0.");
-        break;
+        return;
     }
 
     //Print the dot and precondition the value
-    if(vffInput >= 1000) {
+    if(vff >= 1000) {
         vff /= 1000;
         if(doPrint_lastDot == 1) fvDot(4);
     }
-    else if(vffInput >= 100) {
+    else if(vff >= 100) {
         vff /= 100;
         fvDot(3);
     }
-    else if(vffInput >= 10) {
+    else if(vff >= 10) {
         vff /= 10;
         fvDot(2);
     }
-    else if(vffInput >= 1) {
+    else if(vff >= 1) {
         fvDot(1);
     }
 
