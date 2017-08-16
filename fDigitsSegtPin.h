@@ -36,14 +36,10 @@ class fDigitsSegtPin {
         //Set the digit to write
         void fvSet(u8 vifDigit);
         //Write number to the digit
-        void fvWrite(u8 vifNumber);
+        void fvWrite(u8 vifNumber, u8 vifDot);
 
-        //Clear the digit
-        void fvClear(u8 vifDigit);
-        //Print the dot
-        void fvDot(u8 vifDigit);
         //Print the digit with the number
-        void fvPrint(u8 vifDigit, u8 vifNumber);
+        void fvPrint(u8 vifDigit, u8 vifNumber, u8 vifDot);
 };
 
 //Storage the pins
@@ -54,6 +50,9 @@ fDigitsSegtPin::fDigitsSegtPin(u8 vPf1, u8 vPf2, u8 vPf3, u8 vPf4, u8 vPf5, u8 v
 
 //Init the pins
 void fDigitsSegtPin::begin() {
+    pinMode(vPcD1, OUTPUT); pinMode(vPcD2, OUTPUT); pinMode(vPcD3, OUTPUT); pinMode(vPcD4, OUTPUT);
+    pinMode(vPcA, OUTPUT); pinMode(vPcB, OUTPUT); pinMode(vPcC, OUTPUT); pinMode(vPcD, OUTPUT); pinMode(vPcE, OUTPUT); pinMode(vPcF, OUTPUT); pinMode(vPcG, OUTPUT); pinMode(vPcH, OUTPUT); 
+
     digitalWrite(vPcD1, HIGH); digitalWrite(vPcD2, HIGH); digitalWrite(vPcD3, HIGH); digitalWrite(vPcD4, HIGH);
     digitalWrite(vPcA, LOW); digitalWrite(vPcB, LOW); digitalWrite(vPcC, LOW); digitalWrite(vPcD, LOW); digitalWrite(vPcE, LOW); digitalWrite(vPcF, LOW); digitalWrite(vPcG, LOW); digitalWrite(vPcH, LOW);
 }
@@ -66,75 +65,60 @@ void fDigitsSegtPin::fvAfterGlow() {
 //Set the digit to write
 void fDigitsSegtPin::fvSet(u8 vifDigit) {
     switch(vifDigit) {
-        case 1: digitalWrite(vPcD1, LOW); digitalWrite(vPcD2, HIGH); digitalWrite(vPcD3, HIGH); digitalWrite(vPcD4, HIGH); break;
-        case 2: digitalWrite(vPcD1, HIGH); digitalWrite(vPcD2, LOW); digitalWrite(vPcD3, HIGH); digitalWrite(vPcD4, HIGH); break;
-        case 3: digitalWrite(vPcD1, HIGH); digitalWrite(vPcD2, HIGH); digitalWrite(vPcD3, LOW); digitalWrite(vPcD4, HIGH); break;
-        case 4: digitalWrite(vPcD1, HIGH); digitalWrite(vPcD2, HIGH); digitalWrite(vPcD3, HIGH); digitalWrite(vPcD4, LOW); break;
+        case 0: digitalWrite(vPcD1, LOW); digitalWrite(vPcD2, HIGH); digitalWrite(vPcD3, HIGH); digitalWrite(vPcD4, HIGH); break;
+        case 1: digitalWrite(vPcD1, HIGH); digitalWrite(vPcD2, LOW); digitalWrite(vPcD3, HIGH); digitalWrite(vPcD4, HIGH); break;
+        case 2: digitalWrite(vPcD1, HIGH); digitalWrite(vPcD2, HIGH); digitalWrite(vPcD3, LOW); digitalWrite(vPcD4, HIGH); break;
+        case 3: digitalWrite(vPcD1, HIGH); digitalWrite(vPcD2, HIGH); digitalWrite(vPcD3, HIGH); digitalWrite(vPcD4, LOW); break;
         default: break;
     }
 }
 //Write number to the digit
-void fDigitsSegtPin::fvWrite(u8 vifNumber) {
+void fDigitsSegtPin::fvWrite(u8 vifNumber, u8 vifDot) {
     digitalWrite(vPcA, villDigitTable[vifNumber][0]); digitalWrite(vPcB, villDigitTable[vifNumber][1]); digitalWrite(vPcC, villDigitTable[vifNumber][2]); digitalWrite(vPcD, villDigitTable[vifNumber][3]); digitalWrite(vPcE, villDigitTable[vifNumber][4]); digitalWrite(vPcF, villDigitTable[vifNumber][5]); digitalWrite(vPcG, villDigitTable[vifNumber][6]);
+    digitalWrite(vPcH, vifDot);
 }
 
-//Clear the digit
-void fDigitsSegtPin::fvClear(u8 vifDigit) {
-    fvAfterGlow();
-    fvSet(vifDigit);
-    delay(2);
-}
-//Print the dot
-void fDigitsSegtPin::fvDot(u8 vifDigit) {
-    fvAfterGlow();
-    fvSet(vifDigit);
-    digitalWrite(vPcH, HIGH);
-    delay(2);
-}
 //Print the digit with the number
-void fDigitsSegtPin::fvPrint(u8 vifDigit, u8 vifNumber) {
-    fvAfterGlow();
+void fDigitsSegtPin::fvPrint(u8 vifDigit, u8 vifNumber, u8 vifDot) {
     fvSet(vifDigit);
-    fvWrite(vifNumber);
-    delay(2);
+    fvWrite(vifNumber, vifDot);
+    delay(1);
+    fvAfterGlow();
 }
 
 //Print user's input
 void fDigitsSegtPin::print(float vff) {
     //Make sure these value can be printed
     if(vff >= 10000) {
-        if(Serial) Serial.println("Error(4Digit7Seg12Pin): Input value larger than 10000.");
+        if(Serial) Serial.println("[Error](4Digit7Seg12Pin): Input value larger than 10000.");
         return;
     }
     if(vff < 0) {
-        if(Serial) Serial.println("Error(4Digit7Seg12Pin): Input value smaller than 0.");
+        if(Serial) Serial.println("[Error](4Digit7Seg12Pin): Input value smaller than 0.");
         return;
     }
 
-    //Print the dot and precondition the value
+    //Print the values
     if(vff >= 1000) {
-        vff /= 1000;
-        if(doPrint_lastDot == 1) fvDot(4);
+        fvPrint(0, vff / 1000, 0); vff -= (int)(vff / 1000) * 1000;
+        fvPrint(1, vff / 100, 0); vff -= (int)(vff / 100) * 100;
+        fvPrint(2, vff / 10, 0); vff -= (int)(vff / 10) * 10;
+        fvPrint(3, (int)(vff), doPrint_lastDot);
+        vff = 0;
     }
     else if(vff >= 100) {
-        vff /= 100;
-        fvDot(3);
+        fvPrint(0, vff / 100, 0); vff -= (int)(vff / 100) * 100;
+        fvPrint(1, vff / 10, 0); vff -= (int)(vff / 10) * 10;
+        fvPrint(2, (int)(vff), 1); vff -= (int)(vff);
+        vff *= 10; fvPrint(3, ((vff - (int)(vff)) > 0.5) ? ((int)(vff) + 1) : (int)(vff), 0);
+        vff = 0;
     }
-    else if(vff >= 10) {
-        vff /= 10;
-        fvDot(2);
+    else {
+        fvPrint(0, vff / 10, 0); vff -= (int)(vff / 10) * 10;
+        fvPrint(1, (int)(vff), 1); vff -= (int)(vff);
+        vff *= 10; fvPrint(2, (int)(vff), 0); vff-= (int)(vff);
+        vff *= 10; fvPrint(3, ((vff - (int)(vff)) > 0.5) ? ((int)(vff) + 1) : (int)(vff), 0);
+        vff = 0;
     }
-    else if(vff >= 1) {
-        fvDot(1);
-    }
-
-    //Print the value
-    fvPrint(1, ((vff - (int)(vff) >= 0.5) ? ((int)(vff) + 1) : ((int)(vff))));
-    vff -= ((vff - (int)(vff) >= 0.5) ? ((int)(vff) + 1) : ((int)(vff))); vff *= 10;
-    fvPrint(2, ((vff - (int)(vff) >= 0.5) ? ((int)(vff) + 1) : ((int)(vff))));
-    vff -= ((vff - (int)(vff) >= 0.5) ? ((int)(vff) + 1) : ((int)(vff))); vff *= 10;
-    fvPrint(3, ((vff - (int)(vff) >= 0.5) ? ((int)(vff) + 1) : ((int)(vff))));
-    vff -= ((vff - (int)(vff) >= 0.5) ? ((int)(vff) + 1) : ((int)(vff))); vff *= 10;
-    fvPrint(4, ((vff - (int)(vff) >= 0.5) ? ((int)(vff) + 1) : ((int)(vff))));
 }
 
