@@ -1,7 +1,10 @@
 class fDigitsSegtPin {
     public:
-        //Storage and init the pins
+        //Storage the pins
         fDigitsSegtPin(u8 vPf1, u8 vPf2, u8 vPf3, u8 vPf4, u8 vPf5, u8 vPf6, u8 vPf7, u8 vPf8, u8 vPf9, u8 vPf10, u8 vPf11, u8 vPf12);
+
+        //Init the pins
+        void begin();
 
         //Print digit
         void print(float vff);
@@ -41,18 +44,16 @@ class fDigitsSegtPin {
         void fvDot(u8 vifDigit);
         //Print the digit with the number
         void fvPrint(u8 vifDigit, u8 vifNumber);
-
-        //Rounding function used in printing
-        u8 fiRound(float vff);
 };
 
-//Storage and init the pins
+//Storage the pins
 fDigitsSegtPin::fDigitsSegtPin(u8 vPf1, u8 vPf2, u8 vPf3, u8 vPf4, u8 vPf5, u8 vPf6, u8 vPf7, u8 vPf8, u8 vPf9, u8 vPf10, u8 vPf11, u8 vPf12) {
-    //Srorage the pins
     vPcD1 = vPf12; vPcD2 = vPf9; vPcD3 = vPf8; vPcD4 = vPf6; 
     vPcA = vPf11; vPcB = vPf7; vPcC = vPf4; vPcD = vPf2; vPcE = vPf1; vPcF = vPf10; vPcG = vPf5; vPcH = vPf3;
+}
 
-    //Init the pins
+//Init the pins
+void fDigitsSegtPin::begin() {
     digitalWrite(vPcD1, HIGH); digitalWrite(vPcD2, HIGH); digitalWrite(vPcD3, HIGH); digitalWrite(vPcD4, HIGH);
     digitalWrite(vPcA, LOW); digitalWrite(vPcB, LOW); digitalWrite(vPcC, LOW); digitalWrite(vPcD, LOW); digitalWrite(vPcE, LOW); digitalWrite(vPcF, LOW); digitalWrite(vPcG, LOW); digitalWrite(vPcH, LOW);
 }
@@ -81,22 +82,22 @@ void fDigitsSegtPin::fvWrite(u8 vifNumber) {
 void fDigitsSegtPin::fvClear(u8 vifDigit) {
     fvAfterGlow();
     fvSet(vifDigit);
-//    delay(2); ----------------------------------------------------!
+    delay(2);
 }
 //Print the dot
 void fDigitsSegtPin::fvDot(u8 vifDigit) {
     fvAfterGlow();
     fvSet(vifDigit);
     digitalWrite(vPcH, HIGH);
-//    delay(2); ----------------------------------------------------!
+    delay(2);
 }
 //Print the digit with the number
 void fDigitsSegtPin::fvPrint(u8 vifDigit, u8 vifNumber) {
+    fvAfterGlow();
+    fvSet(vifDigit);
     fvWrite(vifNumber);
-//    delay(2); ----------------------------------------------------!
+    delay(2);
 }
-
-u8 fiRound(float vff) { return((vff - (int)(vff) >= 0.5) ? ((int)(vff) + 1) : ((int)(vff))); }
 
 //Print user's input
 void fDigitsSegtPin::print(float vff) {
@@ -128,12 +129,12 @@ void fDigitsSegtPin::print(float vff) {
     }
 
     //Print the value
-    fvPrint(1, fiRound(vff));
-    vff -= fiRound(vff); vff *= 10;
-    fvPrint(2, fiRound(vff));
-    vff -= fiRound(vff); vff *= 10;
-    fvPrint(3, fiRound(vff));
-    vff -= fiRound(vff); vff *= 10;
-    fvPrint(4, fiRound(vff));
+    fvPrint(1, ((vff - (int)(vff) >= 0.5) ? ((int)(vff) + 1) : ((int)(vff))));
+    vff -= ((vff - (int)(vff) >= 0.5) ? ((int)(vff) + 1) : ((int)(vff))); vff *= 10;
+    fvPrint(2, ((vff - (int)(vff) >= 0.5) ? ((int)(vff) + 1) : ((int)(vff))));
+    vff -= ((vff - (int)(vff) >= 0.5) ? ((int)(vff) + 1) : ((int)(vff))); vff *= 10;
+    fvPrint(3, ((vff - (int)(vff) >= 0.5) ? ((int)(vff) + 1) : ((int)(vff))));
+    vff -= ((vff - (int)(vff) >= 0.5) ? ((int)(vff) + 1) : ((int)(vff))); vff *= 10;
+    fvPrint(4, ((vff - (int)(vff) >= 0.5) ? ((int)(vff) + 1) : ((int)(vff))));
 }
 
