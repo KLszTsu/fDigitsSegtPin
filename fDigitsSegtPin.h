@@ -11,6 +11,7 @@ class fDigitsSegtPin {
 
         //Settings
         u8 doPrint_lastDot = 0;
+        u8 doPrint_firstZero = 0;
     private:
         //Pins
         u8 vPcD1; u8 vPcD2; u8 vPcD3; u8 vPcD4;
@@ -113,8 +114,15 @@ void fDigitsSegtPin::print(float vff) {
         vff *= 10; fvPrint(3, ((vff - (int)(vff)) > 0.5) ? ((int)(vff) + 1) : (int)(vff), 0);
         vff = 0;
     }
-    else {
+    else if(vff >= 10) {
         fvPrint(0, vff / 10, 0); vff -= (int)(vff / 10) * 10;
+        fvPrint(1, (int)(vff), 1); vff -= (int)(vff);
+        vff *= 10; fvPrint(2, (int)(vff), 0); vff-= (int)(vff);
+        vff *= 10; fvPrint(3, ((vff - (int)(vff)) > 0.5) ? ((int)(vff) + 1) : (int)(vff), 0);
+        vff = 0;
+    }
+    else {
+        if(doPrint_firstZero = 0) fvPrint(0, 0, 0);
         fvPrint(1, (int)(vff), 1); vff -= (int)(vff);
         vff *= 10; fvPrint(2, (int)(vff), 0); vff-= (int)(vff);
         vff *= 10; fvPrint(3, ((vff - (int)(vff)) > 0.5) ? ((int)(vff) + 1) : (int)(vff), 0);
