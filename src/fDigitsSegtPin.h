@@ -6,7 +6,9 @@
 #ifndef fDigitsSegtPin_h
 #define fDigitsSegtPin_h
 
+#ifdef ARDUINO
 #include "Arduino.h"
+#endif
 
 class fDigitsSegtPin {
     public:
