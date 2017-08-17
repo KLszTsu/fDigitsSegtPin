@@ -1,3 +1,6 @@
+Because of Arduino's library name requirement, this project is moving to [fDigitsSegtPin](https://github.com/KuangLei/fDigitsSegtPin).  
+Thanks.  
+
 # 4Digit7Seg12Pin (STF\_A\_4)
 
 ## What is 4Digit7Seg12Pin?
