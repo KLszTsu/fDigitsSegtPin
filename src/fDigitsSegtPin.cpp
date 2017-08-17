@@ -54,11 +54,11 @@ void fDigitsSegtPin::fvPrint(u8 vifDigit, u8 vifNumber, u8 vifDot) {
 void fDigitsSegtPin::print(float vff) {
     //Make sure these value can be printed
     if(vff >= 10000) {
-        if(Serial) Serial.println("[Error](4Digit7Seg12Pin): Input value larger than 10000.");
+        if(Serial && doReport_overRange) Serial.println("[Error](4Digit7Seg12Pin): Input value larger than 10000.");
         return;
     }
     if(vff < 0) {
-        if(Serial) Serial.println("[Error](4Digit7Seg12Pin): Input value smaller than 0.");
+        if(Serial && doReport_overRange) Serial.println("[Error](4Digit7Seg12Pin): Input value smaller than 0.");
         return;
     }
 

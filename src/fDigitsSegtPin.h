@@ -22,6 +22,7 @@ class fDigitsSegtPin {
         //Settings
         u8 doPrint_lastDot = 0;
         u8 doPrint_firstZero = 0;
+        u8 doReport_overRange = 1;
     private:
         //Pins
         u8 vPcD1; u8 vPcD2; u8 vPcD3; u8 vPcD4;

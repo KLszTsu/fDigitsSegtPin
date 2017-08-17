@@ -46,10 +46,18 @@ void setup() {
  *            if this parameter is set to 1, it will print "0 3.1 4 ";
  *   Notice: Because the size of a float or double or anything is only 4 in Arduino,
  *           it can only keep two decimal places;
+ * PARAMETER: doReport_overRange:
+ *   Usage: Report when the value is larger than 10000 or is smaller than 0;
+ *   Option: (int) 0, 1;
+ *   Default: 1;
+ *   Example: When printing 10001,
+ *            if this parameter is set to 0, nothing will happen,
+ *            if this parameter is set to 1 and the Serial is available, an error message will be sent through Serial;
  */
     Display.begin();
     Display.doPrint_lastDot = 1;
     Display.doPrint_firstZero = 1;
+    Display.doReport_overRange = 0;
 }
 
 void loop() {
@@ -57,13 +65,9 @@ void loop() {
 /* FUNCTION: print(Value)"
  *   Usage: Print value;
  *   Arguments: Value: (float) The value to print;
- *   Notice: 1. If the value is larger than 10000 or is negative,
- *              It will print an error like this:
- *                [Error](4Digit7Seg12Pin): Input value larger than 10000.
- *              We will soon add a parameter to disable this;
- *           2. This kind of display cannot display a value for long;
- *              If you call this function not frequently enough, it will start blinking;
- *              If you want a continous one, consider those display with a chip on it like 595;
+ *   Notice: This kind of display cannot display a value for long;
+ *           If you call this function not frequently enough, it will start blinking;
+ *           If you want a continous one, consider those display with a chip on it like 595;
  */
     for(float i = 0.01; i < 10000; i += 0.01) Display.print(i);
 }
