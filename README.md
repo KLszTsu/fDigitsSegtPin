@@ -15,17 +15,17 @@ The usage is also available in the [example](https://github.com/KuangLei/fDigits
 Connect the 4 digit display to Arduino like following.  
 About the **resistor**, Either 100 ohm or 220 ohm is OK but 100 ohm ones will make it brighter.  
 ```
-Pin       12 11 10 9  8  7
-          |  |  |  |  |  |
-Resistor  |  R  R  |  |  R
-          |  |  |  |  |  |
+Pin        12 11 10 9  8  7
+           |  |  |  |  |  |
+Resistor   |  R  R  |  |  R
+           |  |  |  |  |  |
          +------------------+
 Display  |    8. 8. 8. 8.   |
          +------------------+
-          |  |  |  |  |  |
-Resistor  R  R  R  R  R  |
-          |  |  |  |  |  |
-Pin       1  2  3  4  5  6
+           |  |  |  |  |  |
+Resistor   R  R  R  R  R  |
+           |  |  |  |  |  |
+Pin        1  2  3  4  5  6
 ```
 ### Second, include the library
 Switch to Arduino IDE.  
