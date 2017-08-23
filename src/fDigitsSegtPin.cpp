@@ -17,14 +17,14 @@
 
 //Storage the pins
 fDigitsSegtPin::fDigitsSegtPin(u8 vPf1, u8 vPf2, u8 vPf3, u8 vPf4, u8 vPf5, u8 vPf6, u8 vPf7, u8 vPf8, u8 vPf9, u8 vPf10, u8 vPf11, u8 vPf12) {
-    vPcD1 = vPf12; vPcD2 = vPf9; vPcD3 = vPf8; vPcD4 = vPf6; 
+    vPcD1 = vPf12; vPcD2 = vPf9; vPcD3 = vPf8; vPcD4 = vPf6;
     vPcA = vPf11; vPcB = vPf7; vPcC = vPf4; vPcD = vPf2; vPcE = vPf1; vPcF = vPf10; vPcG = vPf5; vPcH = vPf3;
 }
 
 //Init the pins
 void fDigitsSegtPin::begin() {
     pinMode(vPcD1, OUTPUT); pinMode(vPcD2, OUTPUT); pinMode(vPcD3, OUTPUT); pinMode(vPcD4, OUTPUT);
-    pinMode(vPcA, OUTPUT); pinMode(vPcB, OUTPUT); pinMode(vPcC, OUTPUT); pinMode(vPcD, OUTPUT); pinMode(vPcE, OUTPUT); pinMode(vPcF, OUTPUT); pinMode(vPcG, OUTPUT); pinMode(vPcH, OUTPUT); 
+    pinMode(vPcA, OUTPUT); pinMode(vPcB, OUTPUT); pinMode(vPcC, OUTPUT); pinMode(vPcD, OUTPUT); pinMode(vPcE, OUTPUT); pinMode(vPcF, OUTPUT); pinMode(vPcG, OUTPUT); pinMode(vPcH, OUTPUT);
 
     digitalWrite(vPcD1, HIGH); digitalWrite(vPcD2, HIGH); digitalWrite(vPcD3, HIGH); digitalWrite(vPcD4, HIGH);
     digitalWrite(vPcA, LOW); digitalWrite(vPcB, LOW); digitalWrite(vPcC, LOW); digitalWrite(vPcD, LOW); digitalWrite(vPcE, LOW); digitalWrite(vPcF, LOW); digitalWrite(vPcG, LOW); digitalWrite(vPcH, LOW);
