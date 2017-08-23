@@ -3,7 +3,16 @@
  * This Library is protected under GPLv3, CopyLeft KLsz Studio
  */
 
+#ifndef ARDUINO                           // This part is used to make a fool of Syntastic.
+#ifndef Syntastic_h                       // Syntastic is a vim syntax checker.
+#include "/home/klsz/Arduino/Syntastic.h" // It can act as a C++ checker,
+#endif                                    // but not an Arduino checker.
+#endif                                    // It wont affect compiling using Arduino IDE.
+
+#ifdef ARDUINO
 #include "Arduino.h"
+#endif
+
 #include "fDigitsSegtPin.h"
 
 //Storage the pins
@@ -68,28 +77,24 @@ void fDigitsSegtPin::print(float vff) {
         fvPrint(1, vff / 100, 0); vff -= (int)(vff / 100) * 100;
         fvPrint(2, vff / 10, 0); vff -= (int)(vff / 10) * 10;
         fvPrint(3, (int)(vff), doPrint_lastDot);
-        vff = 0;
     }
     else if(vff >= 100) {
         fvPrint(0, vff / 100, 0); vff -= (int)(vff / 100) * 100;
         fvPrint(1, vff / 10, 0); vff -= (int)(vff / 10) * 10;
         fvPrint(2, (int)(vff), 1); vff -= (int)(vff);
         vff *= 10; fvPrint(3, ((vff - (int)(vff)) > 0.5) ? ((int)(vff) + 1) : (int)(vff), 0);
-        vff = 0;
     }
     else if(vff >= 10) {
         fvPrint(0, vff / 10, 0); vff -= (int)(vff / 10) * 10;
         fvPrint(1, (int)(vff), 1); vff -= (int)(vff);
         vff *= 10; fvPrint(2, (int)(vff), 0); vff-= (int)(vff);
         vff *= 10; fvPrint(3, ((vff - (int)(vff)) > 0.5) ? ((int)(vff) + 1) : (int)(vff), 0);
-        vff = 0;
     }
     else {
         if(doPrint_firstZero = 0) fvPrint(0, 0, 0);
         fvPrint(1, (int)(vff), 1); vff -= (int)(vff);
         vff *= 10; fvPrint(2, (int)(vff), 0); vff-= (int)(vff);
         vff *= 10; fvPrint(3, ((vff - (int)(vff)) > 0.5) ? ((int)(vff) + 1) : (int)(vff), 0);
-        vff = 0;
     }
 }
 

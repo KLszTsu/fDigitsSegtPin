@@ -1,8 +1,6 @@
 # fDigitsSegtPin (STF\_A\_4)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/003cd8dbf698401fb460a531808d1aae)](https://www.codacy.com/app/KuangLei/fDigitsSegtPin?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=KuangLei/fDigitsSegtPin&amp;utm_campaign=Badge_Grade)
-
-## What is fDigitsSegtPin?
-It is a Arduino library used to drive a basic 4-digit display like 5461.  
+fDigitsSegtPin is a Arduino library used to drive a basic 4-digit display like 5461.  
 If you are lack of pins, you can try to use 4-digit display with chips like 595.  
 
 ## Installation

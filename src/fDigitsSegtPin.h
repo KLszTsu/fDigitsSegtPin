@@ -3,6 +3,12 @@
  * This Library is protected under GPLv3, CopyLeft KLsz Studio
  */
 
+#ifndef ARDUINO                           // This part is used to make a fool of Syntastic.
+#ifndef Syntastic_h                       // Syntastic is a vim syntax checker.
+#include "/home/klsz/Arduino/Syntastic.h" // It can act as a C++ checker,
+#endif                                    // but not an Arduino checker.
+#endif                                    // It wont affect compiling using Arduino IDE.
+
 #ifndef fDigitsSegtPin_h
 #define fDigitsSegtPin_h
 
