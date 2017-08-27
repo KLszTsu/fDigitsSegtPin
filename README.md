@@ -1,3 +1,4 @@
+[![Join the chat at https://gitter.im/fDigitsSegtPin/Lobby](https://badges.gitter.im/fDigitsSegtPin/Lobby.svg)](https://gitter.im/fDigitsSegtPin/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/003cd8dbf698401fb460a531808d1aae)](https://www.codacy.com/app/KuangLei/fDigitsSegtPin?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=KuangLei/fDigitsSegtPin&amp;utm_campaign=Badge_Grade)  
 
 # fDigitsSegtPin (STF\_A\_4)
