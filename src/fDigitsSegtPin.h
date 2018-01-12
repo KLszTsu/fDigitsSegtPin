@@ -1,6 +1,6 @@
-/* Library 4Digit7Seg12Pin by KLsz Studio
- * For more info please visit "https://github.com/KuangLei/4Digit7Seg12Pin/"
- * This Library is protected under GPLv3, CopyLeft KLsz Studio
+/* fDigitsSegtPin by KLsz
+ * For more info please visit "https://github.com/KuangLei" or "https://coding.net/u/KLsz"
+ * License: GPL v3, CopyLeft KLsz
  */
 
 #ifndef ARDUINO                           // This part is used to make a fool of Syntastic.
@@ -9,12 +9,13 @@
 #endif                                    // but not an Arduino checker.
 #endif                                    // It wont affect compiling using Arduino IDE.
 
-#ifndef fDigitsSegtPin_h
-#define fDigitsSegtPin_h
+#ifndef __FDIGITSSEGTPIN_H__
+#define __FDIGITSSEGTPIN_H__
 
 #ifdef ARDUINO
 #include "Arduino.h"
 #endif
+#include "ver.h"
 
 class fDigitsSegtPin {
     public:
@@ -62,5 +63,5 @@ class fDigitsSegtPin {
         void fvPrint(u8 vifDigit, u8 vifNumber, u8 vifDot);
 };
 
-#endif
+#endif //__FDIGITSSEGTPIN_H__
 

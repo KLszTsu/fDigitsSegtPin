@@ -1,6 +1,6 @@
-/* Library 4Digit7Seg12Pin by KLsz Studio
- * For more info please visit "https://github.com/KuangLei/4Digit7Seg12Pin/"
- * This Library is protected under GPLv3, CopyLeft KLsz Studio
+/* fDigitsSegtPin by KLsz
+ * For more info please visit "https://github.com/KuangLei" or "https://coding.net/u/KLsz"
+ * License: GPL v3, CopyLeft KLsz
  */
 
 #ifndef ARDUINO                           // This part is used to make a fool of Syntastic.
