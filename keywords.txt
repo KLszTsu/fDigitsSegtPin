@@ -1,7 +1,7 @@
-fDigitsSegtPin		KEYWORD1
-begin				KEYWORD2
-print				KEYWORD2
-doPrint_lastDot		KEYWORD2
+fDigitsSegtPin	KEYWORD1
+begin	KEYWORD2
+print	KEYWORD2
+doPrint_lastDot	KEYWORD2
 doPrint_firstZero	KEYWORD2
 doReport_overRange	KEYWORD2
 
