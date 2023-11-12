@@ -91,7 +91,7 @@ void fDigitsSegtPin::print(float vff) {
         vff *= 10; fvPrint(3, ((vff - (int)(vff)) > 0.5) ? ((int)(vff) + 1) : (int)(vff), 0);
     }
     else {
-        if(doPrint_firstZero = 0) fvPrint(0, 0, 0);
+        if(doPrint_firstZero == 1) fvPrint(0, 0, 0);
         fvPrint(1, (int)(vff), 1); vff -= (int)(vff);
         vff *= 10; fvPrint(2, (int)(vff), 0); vff-= (int)(vff);
         vff *= 10; fvPrint(3, ((vff - (int)(vff)) > 0.5) ? ((int)(vff) + 1) : (int)(vff), 0);
