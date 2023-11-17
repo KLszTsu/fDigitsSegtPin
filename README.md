@@ -1,5 +1,5 @@
 [![Join the chat at https://gitter.im/fDigitsSegtPin/Lobby](https://badges.gitter.im/fDigitsSegtPin/Lobby.svg)](https://gitter.im/fDigitsSegtPin/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/003cd8dbf698401fb460a531808d1aae)](https://www.codacy.com/app/KuangLei/fDigitsSegtPin?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=KuangLei/fDigitsSegtPin&amp;utm_campaign=Badge_Grade)  
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/003cd8dbf698401fb460a531808d1aae)](https://www.codacy.com/app/KLszTsu/fDigitsSegtPin?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=KLszTsu/fDigitsSegtPin&amp;utm_campaign=Badge_Grade)  
 
 # fDigitsSegtPin (STF\_A\_4)
 fDigitsSegtPin is a Arduino library used to drive a basic 4-digit display like 5461.  
@@ -7,11 +7,11 @@ If you are lack of pins, you can try to use 4-digit display with chips like 595.
 
 ## Installation
 You can install it through **Arduino Library Manager** by searching `fDigitsSegtPin`.  
-You can also manually download it from the [releases page](https://github.com/KuangLei/fDigitsSegtPin/releases), or clone it with `git clone git@github.com:KuangLei/fDigitsSegtPin.git` and then copy it to your Arduino library folder.  
+You can also manually download it from the [releases page](https://github.com/KLszTsu/fDigitsSegtPin/releases), or clone it with `git clone git@github.com:KLszTsu/fDigitsSegtPin.git` and then copy it to your Arduino library folder.  
 Check out Arduino's [library tutorial](https://www.arduino.cc/en/Guide/Libraries) for further guide.  
 
 ## Usage
-The usage is also available in the [example](https://github.com/KuangLei/fDigitsSegtPin/blob/master/examples/counter/counter.ino).  
+The usage is also available in the [example](https://github.com/KLszTsu/fDigitsSegtPin/blob/master/examples/counter/counter.ino).  
 ### First, connect your 4 digit display to Arduino
 Connect the 4 digit display to Arduino like following.  
 About the **resistor**, Either 100 ohm or 220 ohm is OK but 100 ohm ones will make it brighter.  
