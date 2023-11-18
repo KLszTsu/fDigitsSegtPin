@@ -1,9 +1,8 @@
-[![Join the chat at https://gitter.im/fDigitsSegtPin/Lobby](https://badges.gitter.im/fDigitsSegtPin/Lobby.svg)](https://gitter.im/fDigitsSegtPin/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/003cd8dbf698401fb460a531808d1aae)](https://www.codacy.com/app/KLszTsu/fDigitsSegtPin?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=KLszTsu/fDigitsSegtPin&amp;utm_campaign=Badge_Grade)  
-
-# fDigitsSegtPin (STF\_A\_4)
+# fDigitsSegtPin
 fDigitsSegtPin is a Arduino library used to drive a basic 4-digit display like 5461.  
 If you are lack of pins, you can try to use 4-digit display with chips like 595.  
+
+The maintainer is no longer active in the space of Arduino. If anybody would like to take over the library or become a maintainer of the repository, feel free to [create](https://github.com/KLszTsu/fDigitsSegtPin/issues/new) a GitHub Issue and let me know.  
 
 ## Installation
 You can install it through **Arduino Library Manager** by searching `fDigitsSegtPin`.  
@@ -74,9 +73,6 @@ Display.Settings = Option;
 * Option: 0, 1.
 * Default: 1.
 * Example: When printing 10001, if this parameter is set to `0`, nothing will happen, and if this parameter is set to `1` and the Serial is available, an error message will be sent through Serial.
-
-## Contact and support us
-Please see [CONTRIBUTING.md](CONTRIBUTING.md).  
 
 Thanks.  
 
