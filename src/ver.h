@@ -18,8 +18,8 @@
 #ifndef __VER_H__
 #define __VER_H__
 
-#define __FDIGITSSEGTPIN_VER__ "1.1.6"
-#define __FDIGITSSEGTPIN_INFO__ "fDigitsSegtPin 1.1.6"
+#define __FDIGITSSEGTPIN_VER__ "1.1.7"
+#define __FDIGITSSEGTPIN_INFO__ "fDigitsSegtPin 1.1.7"
 #define __FDIGITSSEGTPIN_LICENSE__ "Copyright (C) fDigitsSegtPin contributors; License: GPLv3"
 
 #endif //__VER_H__
